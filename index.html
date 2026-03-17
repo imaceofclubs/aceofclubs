@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>aceofclubs</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    linear-gradient(to bottom, #ffffff 0%, #f8f8f8 100%);
+  color: #111;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,0,0,0.03) 0px,
+      rgba(255,0,0,0.03) 1px,
+      transparent 1px,
+      transparent 32px
+    );
+}
+
+a {
+  color: #c40000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+  background: #ffe5e5;
+}
+
+/* top scrolling strip */
+.top-strip {
+  background: #000;
+  color: #fff;
+  font-size: 11px;
+  padding: 6px 10px;
+  border-bottom: 2px solid #c40000;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 16s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* header */
+.header {
+  background: linear-gradient(to bottom, #d40000, #9a0000);
+  color: white;
+  text-align: center;
+  padding: 18px;
+  border-bottom: 4px solid #000;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 42px;
+  letter-spacing: 4px;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.header .sub {
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+/* nav */
+.nav {
+  background: #fff;
+  border-bottom: 2px solid #c40000;
+  text-align: center;
+  padding: 10px;
+  font-size: 13px;
+}
+
+.nav a {
+  margin: 0 10px;
+}
+
+/* layout */
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 20px;
+}
+
+/* boxes */
+.box {
+  background: #fff;
+  border: 2px solid #c40000;
+  margin-bottom: 20px;
+  box-shadow: 4px 4px 0 #000;
+  transition: 0.15s;
+}
+
+.box:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #000;
+}
+
+.box-title {
+  background: #c40000;
+  color: white;
+  padding: 8px;
+  font-size: 13px;
+  text-transform: uppercase;
+  border-bottom: 2px solid #000;
+}
+
+.box-content {
+  padding: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* profile */
+.profile-frame {
+  border: 2px dashed #c40000;
+  padding: 4px;
+  margin-bottom: 10px;
+}
+
+.profile-pic {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 2px solid #c40000;
+}
+
+/* misc */
+.mini {
+  font-size: 12px;
+  color: #555;
+}
+
+.status-light {
+  width: 8px;
+  height: 8px;
+  background: #00c700;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.blinkie {
+  background: #000;
+  color: #fff;
+  padding: 5px;
+  font-size: 11px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0.5; }
+}
+
+.track, .blog-post {
+  border-bottom: 1px dashed #c40000;
+  padding: 6px 0;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  border-top: 2px solid #c40000;
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-strip">
+  <div class="marquee">
+    aceofclubs // tribal house // techno // hardgroove // professionally amateur // this page may change at any time //
+  </div>
+</div>
+
+<div class="header">
+  <h1>ACEOFCLUBS</h1>
+  <div class="sub">official page // last updated: ???</div>
+</div>
+
+<div class="nav">
+  <a href="#">about</a>
+  <a href="#">tracks</a>
+  <a href="#">updates</a>
+</div>
+
+<div class="container">
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <div>
+
+      <div class="box">
+        <div class="box-title">profile</div>
+        <div class="box-content">
+
+          <div class="profile-frame">
+            <img src="images/profile.jpg" class="profile-pic" />
+          </div>
+
+          <p class="mini">square image works best</p>
+
+          <strong>aceofclubs</strong><br>
+          professionally amateur tribal house techno hardgroove sound engineer kinda
+
+          <p class="mini"><span class="status-light"></span>online now</p>
+          <p class="mini">currently: making something that might be good</p>
+          <p class="mini">mood: locked in</p>
+          <p class="mini">this page will probably look different tomorrow</p>
+
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-title">links</div>
+        <div class="box-content">
+          <p><a href="https://soundcloud.com/aceofclubs-188352153" target="_blank">soundcloud</a></p>
+          <p><a href="https://www.instagram.com/aceofclubssssss/" target="_blank">instagram</a></p>
+          <p><a href="https://aceofclubs.bandcamp.com" target="_blank">bandcamp</a></p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MAIN -->
+    <div>
+
+      <div class="box">
+        <div class="box-title">latest track</div>
+        <div class="box-content">
+          paste SoundCloud embed here
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-title">updates</div>
+        <div class="box-content">
+          <div class="blog-post">&gt; 3am decisions are permanent decisions</div>
+          <div class="blog-post">&gt; kick too loud, not fixing</div>
+          <div class="blog-post">&gt; saved as final_v27_real_final2</div>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-title">top tracks</div>
+        <div class="box-content">
+          <div class="track">1. track</div>
+          <div class="track">2. track</div>
+          <div class="track">3. track</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  made with html & bad decisions
+</div>
+
+</body>
+</html>
