@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>aceofclubs</title>
-
   <style>
     body {
       margin: 0;
@@ -39,6 +38,7 @@
       font-size: 11px;
       padding: 6px 10px;
       text-transform: uppercase;
+      letter-spacing: 1px;
       border-bottom: 2px solid #c40000;
       white-space: nowrap;
       overflow: hidden;
@@ -59,20 +59,24 @@
       background: linear-gradient(to bottom, #d40000, #9a0000);
       color: white;
       text-align: center;
-      padding: 18px;
+      padding: 18px 12px 16px;
       border-bottom: 4px solid #000;
+      box-shadow: inset 0 -2px 0 rgba(255,255,255,0.15);
     }
 
     .header h1 {
       margin: 0;
       font-size: 42px;
       letter-spacing: 4px;
+      text-transform: uppercase;
       text-shadow: 2px 2px 0 #000;
     }
 
     .header .sub {
-      font-size: 12px;
       margin-top: 6px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
     .nav {
@@ -85,39 +89,42 @@
 
     .nav a {
       margin: 0 10px;
+      display: inline-block;
     }
 
     .container {
       max-width: 1100px;
-      margin: auto;
-      padding: 20px;
+      margin: 18px auto;
+      padding: 0 14px 30px;
     }
 
     .layout {
       display: grid;
       grid-template-columns: 280px 1fr;
-      gap: 20px;
+      gap: 18px;
     }
 
     .box {
       background: #fff;
       border: 2px solid #c40000;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       box-shadow: 4px 4px 0 #000;
-      transition: 0.15s;
     }
 
     .box:hover {
-      transform: translate(-2px, -2px);
+      transform: translate(-1px, -1px);
       box-shadow: 6px 6px 0 #000;
+      transition: 0.15s ease;
     }
 
     .box-title {
       background: #c40000;
-      color: white;
-      padding: 8px;
+      color: #fff;
+      padding: 8px 10px;
       font-size: 13px;
+      font-weight: bold;
       text-transform: uppercase;
+      letter-spacing: 1px;
       border-bottom: 2px solid #000;
     }
 
@@ -131,13 +138,22 @@
       border: 2px dashed #c40000;
       padding: 4px;
       margin-bottom: 10px;
+      background: repeating-linear-gradient(
+        45deg,
+        #f0f0f0,
+        #f0f0f0 10px,
+        #e5e5e5 10px,
+        #e5e5e5 20px
+      );
     }
 
     .profile-pic {
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
+      display: block;
       border: 2px solid #c40000;
+      background: #f2f2f2;
     }
 
     .mini {
@@ -146,138 +162,352 @@
     }
 
     .status-light {
-      width: 8px;
-      height: 8px;
-      background: #00c700;
       display: inline-block;
+      width: 9px;
+      height: 9px;
+      background: #00c700;
       border-radius: 50%;
-      margin-right: 5px;
+      margin-right: 6px;
+      box-shadow: 0 0 8px #00c700;
+      vertical-align: middle;
+    }
+
+    .stamp-row,
+    .blinkies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .stamp {
+      border: 1px solid #000;
+      background: #f6f6f6;
+      padding: 6px 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .blinkie {
       background: #000;
       color: #fff;
-      padding: 5px;
+      border: 1px solid #c40000;
+      padding: 5px 8px;
       font-size: 11px;
-      animation: blink 1s infinite;
+      text-transform: lowercase;
+      animation: blink 1s step-start infinite;
     }
 
     @keyframes blink {
-      50% { opacity: 0.5; }
+      50% { opacity: 0.45; }
     }
 
-    .track, .blog-post {
+    .hero-note {
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .quote {
+      border-left: 4px solid #c40000;
+      padding-left: 10px;
+      margin: 10px 0;
+      font-style: italic;
+      color: #444;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+    }
+
+    .track-list .item,
+    .blog-list .item,
+    .friends-list .item {
+      padding: 10px 0;
       border-bottom: 1px dashed #c40000;
-      padding: 6px 0;
+    }
+
+    .track-list .item:last-child,
+    .blog-list .item:last-child,
+    .friends-list .item:last-child {
+      border-bottom: none;
+    }
+
+    .track-num {
+      display: inline-block;
+      width: 26px;
+      font-weight: bold;
+      color: #c40000;
+    }
+
+    .fake-ad {
+      background: #000;
+      color: #fff;
+      text-align: center;
+      padding: 14px 10px;
+      border: 2px solid #c40000;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .fake-ad strong {
+      color: #ff4d4d;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+
+    .small-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .visitor-counter {
+      font-family: "Courier New", monospace;
+      background: #111;
+      color: #00ff66;
+      padding: 8px 10px;
+      display: inline-block;
+      border: 2px inset #666;
+      font-size: 18px;
+      letter-spacing: 2px;
     }
 
     .footer {
+      margin-top: 26px;
       text-align: center;
-      padding: 20px;
       font-size: 12px;
+      color: #444;
+      padding: 18px 10px 30px;
       border-top: 2px solid #c40000;
     }
 
-    @media (max-width: 900px) {
-      .layout {
-        grid-template-columns: 1fr;
-      }
+    .warning {
+      color: #c40000;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1px;
     }
 
+    .embed-placeholder {
+      border: 2px dashed #c40000;
+      background: #fff5f5;
+      padding: 16px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .layout,
+      .two-col,
+      .small-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header h1 {
+        font-size: 30px;
+      }
+    }
   </style>
 </head>
-
 <body>
 
-<div class="top-strip">
-  <div class="marquee">
-    aceofclubs // tribal house // techno // hardgroove // professionally amateur // this page may change at any time //
+  <div class="top-strip">
+    <div class="marquee">
+      aceofclubs // professionally amateur // tribal house // techno // hardgroove // sound engineer kinda // this page may change without warning //
+    </div>
   </div>
-</div>
 
-<div class="header">
-  <h1>ACEOFCLUBS</h1>
-  <div class="sub">official page // last updated: ???</div>
-</div>
+  <div class="header">
+    <h1>aceofclubs</h1>
+    <div class="sub">official page // last updated: ??? // status: unknown</div>
+  </div>
 
-<div class="nav">
-  <a href="#">about</a>
-  <a href="#">tracks</a>
-  <a href="#">updates</a>
-</div>
+  <div class="nav">
+    <a href="#about">about</a>
+    <a href="#latest">latest track</a>
+    <a href="#top5">top 5</a>
+    <a href="#updates">updates</a>
+    <a href="#extras">extras</a>
+    <a href="#links">links</a>
+  </div>
 
-<div class="container">
-  <div class="layout">
+  <div class="container">
+    <div class="layout">
 
-    <!-- SIDEBAR -->
-    <div>
-
-      <div class="box">
-        <div class="box-title">profile</div>
-        <div class="box-content">
-
-          <div class="profile-frame">
-            <img src="images/profile.jpg" class="profile-pic" />
+      <!-- LEFT SIDEBAR -->
+      <div>
+        <div class="box">
+          <div class="box-title">profile</div>
+          <div class="box-content">
+            <div class="profile-frame">
+              <img src="images/profile.jpg" alt="aceofclubs profile image" class="profile-pic" />
+            </div>
+            <p class="mini">square image works best</p>
+            <strong>aceofclubs</strong><br>
+            professionally amateur tribal house techno hardgroove sound engineer kinda
+            <p class="mini"><span class="status-light"></span>online now</p>
+            <p class="mini">currently: making something that might be good</p>
+            <p class="mini">mood: locked in</p>
+            <p class="mini">this page will probably look different tomorrow</p>
           </div>
-          <p class="mini">square image works best</p>
+        </div>
 
-          <strong>aceofclubs</strong><br>
-          professionally amateur tribal house techno hardgroove sound engineer kinda
+        <div class="box" id="links">
+          <div class="box-title">links</div>
+          <div class="box-content">
+            <p><a href="https://soundcloud.com/aceofclubs-188352153" target="_blank">soundcloud</a></p>
+            <p><a href="https://www.instagram.com/aceofclubssssss/" target="_blank">instagram</a></p>
+            <p><a href="https://aceofclubs.bandcamp.com" target="_blank">bandcamp</a></p>
+          </div>
+        </div>
 
-          <p class="mini"><span class="status-light"></span>online now</p>
-          <p class="mini">currently: making something that might be good</p>
-          <p class="mini">this page will probably look different tomorrow</p>
+        <div class="box">
+          <div class="box-title">blinkies / badges</div>
+          <div class="box-content">
+            <div class="blinkies">
+              <div class="blinkie">hardgroove friendly</div>
+              <div class="blinkie">best with speakers</div>
+              <div class="blinkie">contains pressure</div>
+              <div class="blinkie">red meter zone</div>
+            </div>
+          </div>
+        </div>
 
+        <div class="box">
+          <div class="box-title">visitor counter</div>
+          <div class="box-content">
+            <div class="visitor-counter">000347</div>
+            <p class="mini">you are visitor number 000347</p>
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="box-title">random info</div>
+          <div class="box-content">
+            <p><strong>listening:</strong> random underground techno</p>
+            <p><strong>gear:</strong> laptop barely holding on</p>
+            <p><strong>open tabs:</strong> SoundCloud / compressor manual / one suspicious forum post from 2008</p>
+          </div>
+        </div>
+
+        <div class="fake-ad">
+          <strong>warning</strong><br>
+          excessive groove levels detected<br>
+          proceed accordingly
         </div>
       </div>
 
-      <div class="box">
-        <div class="box-title">links</div>
-        <div class="box-content">
-          <p><a href="https://soundcloud.com/aceofclubs-188352153">soundcloud</a></p>
-          <p><a href="https://www.instagram.com/aceofclubssssss/">instagram</a></p>
-          <p><a href="https://aceofclubs.bandcamp.com">bandcamp</a></p>
+      <!-- MAIN COLUMN -->
+      <div>
+        <div class="box" id="about">
+          <div class="box-title">about</div>
+          <div class="box-content hero-note">
+            aceofclubs sits somewhere between tribal house, techno, hardgroove and sound engineering obsession.
+            this page is supposed to feel like an old artist profile that got left online too long, then cleaned up just enough to still make sense.
+            <div class="quote">
+              polished enough to care, messy enough to still feel alive.
+            </div>
+            <div class="stamp-row">
+              <div class="stamp">tribal house</div>
+              <div class="stamp">techno</div>
+              <div class="stamp">hardgroove</div>
+              <div class="stamp">sound engineer kinda</div>
+              <div class="stamp">professionally amateur</div>
+            </div>
+          </div>
         </div>
-      </div>
 
+        <div class="box" id="latest">
+          <div class="box-title">latest track</div>
+          <div class="box-content">
+            <div class="embed-placeholder">
+              paste your SoundCloud embed iframe here when ready.<br><br>
+              for now people can use the SoundCloud link in the sidebar.
+            </div>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="box" id="top5">
+            <div class="box-title">top 5 tracks i enjoy</div>
+            <div class="box-content track-list">
+              <div class="item"><span class="track-num">01</span> Ben Sims — track name here</div>
+              <div class="item"><span class="track-num">02</span> DJ Rush — track name here</div>
+              <div class="item"><span class="track-num">03</span> Floorplan — track name here</div>
+              <div class="item"><span class="track-num">04</span> track name here</div>
+              <div class="item"><span class="track-num">05</span> track name here</div>
+            </div>
+          </div>
+
+          <div class="box">
+            <div class="box-title">influences</div>
+            <div class="box-content">
+              ben sims / dj rush / floorplan / anything with pressure / percussion that sounds expensive and slightly dangerous
+            </div>
+          </div>
+        </div>
+
+        <div class="two-col" id="updates">
+          <div class="box">
+            <div class="box-title">updates / thoughts</div>
+            <div class="box-content blog-list">
+              <div class="item">&gt; 3am decisions are permanent decisions</div>
+              <div class="item">&gt; removed 12 plugins. track improved instantly.</div>
+              <div class="item">&gt; kick is too loud. not fixing it.</div>
+              <div class="item">&gt; i understand compression now (lying)</div>
+              <div class="item">&gt; saved as final_v27_real_final2</div>
+            </div>
+          </div>
+
+          <div class="box">
+            <div class="box-title">mini blogbox</div>
+            <div class="box-content">
+              <p><span class="warning">note:</span> this is not a normal website.</p>
+              <p>it is better viewed with the idea that somewhere a 2007 blogspot page is haunting it.</p>
+              <p>the goal is pressure, not perfection.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="small-grid" id="extras">
+          <div class="box">
+            <div class="box-title">friends / adjacent energy</div>
+            <div class="box-content friends-list">
+              <div class="item">the kick drum</div>
+              <div class="item">the limiter</div>
+              <div class="item">the one hi-hat that fixed everything</div>
+              <div class="item">whoever made old forums</div>
+            </div>
+          </div>
+
+          <div class="box">
+            <div class="box-title">site facts</div>
+            <div class="box-content">
+              <p>best viewed: too late at night</p>
+              <p>theme: white / red / black / overthinking</p>
+              <p>page type: artist profile / digital noticeboard / mild threat</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="box-title">guestbook energy</div>
+          <div class="box-content">
+            no real guestbook yet.<br>
+            imagine somebody said “hardgroove legend” here and left.
+          </div>
+        </div>
+
+      </div>
     </div>
 
-    <!-- MAIN -->
-    <div>
-
-      <div class="box">
-        <div class="box-title">latest track</div>
-        <div class="box-content">
-          paste SoundCloud embed here
-        </div>
-      </div>
-
-      <div class="box">
-        <div class="box-title">updates</div>
-        <div class="box-content">
-          <div class="blog-post">> 3am decisions are permanent decisions</div>
-          <div class="blog-post">> kick too loud, not fixing</div>
-          <div class="blog-post">> saved as final_v27_real_final2</div>
-        </div>
-      </div>
-
-      <div class="box">
-        <div class="box-title">top tracks</div>
-        <div class="box-content">
-          <div class="track">1. track</div>
-          <div class="track">2. track</div>
-          <div class="track">3. track</div>
-        </div>
-      </div>
-
+    <div class="footer">
+      made with html & bad decisions // aceofclubs © 2026
     </div>
-
   </div>
-</div>
-
-<div class="footer">
-  made with html & bad decisions
-</div>
 
 </body>
 </html>
