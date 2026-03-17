@@ -473,93 +473,6 @@
       margin-top: -2px;
     }
 
-    .cassette-wrap {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .cassette {
-      width: 170px;
-      height: 100px;
-      background: linear-gradient(to bottom, #1e1e1e, #0f0f0f);
-      border: 2px solid #c40000;
-      box-shadow: 4px 4px 0 #000;
-      position: relative;
-      color: #fff;
-    }
-
-    .cassette::before {
-      content: "aceofclubs demo tape";
-      position: absolute;
-      top: 10px;
-      left: 12px;
-      right: 12px;
-      background: #f2f2f2;
-      color: #111;
-      text-align: center;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 6px;
-      border: 1px solid #000;
-    }
-
-    .cassette-window {
-      position: absolute;
-      left: 20px;
-      right: 20px;
-      bottom: 18px;
-      height: 34px;
-      border: 2px solid #c40000;
-      background: #fff6f6;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-    }
-
-    .reel {
-      width: 20px;
-      height: 20px;
-      border: 2px solid #000;
-      border-radius: 50%;
-      background: radial-gradient(circle, #fff 20%, #999 21%, #999 40%, #fff 41%);
-      animation: spin 2.4s linear infinite;
-    }
-
-    .tape-line {
-      width: 42px;
-      height: 2px;
-      background: #000;
-    }
-
-    .cd {
-      width: 92px;
-      height: 92px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at center, #fff 0 10px, #bbb 10px 12px, transparent 12px),
-        conic-gradient(from 0deg, #efefef, #d9d9d9, #f5f5f5, #d0d0d0, #efefef);
-      border: 2px solid #000;
-      box-shadow: 4px 4px 0 #000;
-      animation: spin 5s linear infinite;
-      position: relative;
-    }
-
-    .cd::after {
-      content: "";
-      position: absolute;
-      inset: 12px;
-      border-radius: 50%;
-      border: 1px solid rgba(196,0,0,0.45);
-    }
-
-    @keyframes spin {
-      100% { transform: rotate(360deg); }
-    }
-
     .under-construction {
       display: inline-block;
       margin-top: 10px;
@@ -568,8 +481,8 @@
         45deg,
         #ffe000 0px,
         #ffe000 8px,
-        #111 8px,
-        #111 16px
+        #000 8px,
+        #000 16px
       );
       color: #000;
       padding: 6px 9px;
@@ -577,6 +490,7 @@
       text-transform: uppercase;
       font-weight: bold;
       letter-spacing: 1px;
+      text-shadow: 1px 1px 0 #fff;
     }
 
     .footer {
@@ -600,25 +514,52 @@
 
     .floater {
       position: absolute;
-      opacity: 0.22;
       user-select: none;
       will-change: transform;
-      filter: contrast(1.08) saturate(0.95);
     }
 
     .floater img {
       display: block;
       width: 100%;
       height: auto;
+      border: 6px solid #fff;
+      box-shadow: 4px 4px 0 #000;
+      background: #fff;
+      filter: contrast(1.08) saturate(0.95);
+    }
+
+    .floater::before,
+    .floater::after {
+      content: "";
+      position: absolute;
+      width: 34px;
+      height: 14px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(0,0,0,0.1);
+      box-shadow: 1px 1px 0 rgba(0,0,0,0.15);
+      z-index: 2;
+    }
+
+    .floater::before {
+      top: -8px;
+      left: 12px;
+      transform: rotate(-16deg);
+    }
+
+    .floater::after {
+      bottom: -8px;
+      right: 10px;
+      transform: rotate(13deg);
     }
 
     .floater.behind {
       z-index: 1;
+      opacity: 0.2;
     }
 
     .floater.front {
       z-index: 15;
-      opacity: 0.16;
+      opacity: 0.13;
       mix-blend-mode: multiply;
     }
 
@@ -691,7 +632,7 @@
       position: absolute;
       pointer-events: none;
       z-index: 3;
-      opacity: 0.88;
+      opacity: 0.96;
       filter: drop-shadow(2px 2px 0 #000);
     }
 
@@ -699,6 +640,21 @@
       display: block;
       width: 100%;
       height: auto;
+      border: 4px solid #fff;
+      box-shadow: 2px 2px 0 #000;
+      background: #fff;
+    }
+
+    .sidebar-sticker::before {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 10px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(0,0,0,0.08);
+      top: -6px;
+      left: 8px;
+      transform: rotate(-18deg);
     }
 
     .sticker-a {
@@ -734,7 +690,7 @@
       top: 50px;
       right: 14px;
       transform: rotate(-6deg);
-      opacity: 0.8;
+      opacity: 0.88;
     }
 
     @media (max-width: 900px) {
@@ -972,19 +928,14 @@
           </div>
 
           <div class="box">
-            <div class="box-title">cassette / compact disc department</div>
+            <div class="box-title">tools of the trade</div>
             <div class="box-content">
-              <div class="cassette-wrap">
-                <div class="cassette">
-                  <div class="cassette-window">
-                    <div class="reel"></div>
-                    <div class="tape-line"></div>
-                    <div class="reel"></div>
-                  </div>
-                </div>
-                <div class="cd"></div>
+              <div class="friends-list">
+                <div class="item">fl studio (still standing somehow)</div>
+                <div class="item">one kick drum i refuse to replace</div>
+                <div class="item">compressor doing emotional labour</div>
+                <div class="item">headphones from unknown origin</div>
               </div>
-              <p class="mini" style="margin-top: 12px;">physical media appreciation zone // no skips, only consequences</p>
             </div>
           </div>
         </div>
@@ -1001,7 +952,7 @@
           </div>
 
           <div class="box">
-            <div class="box-title">site facts / fake awards</div>
+            <div class="box-title">site facts / awards</div>
             <div class="box-content">
               <p>best viewed: too late at night</p>
               <p>theme: white / red / black / overthinking</p>
