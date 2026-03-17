@@ -123,6 +123,7 @@
       box-shadow: 4px 4px 0 #000;
       position: relative;
       z-index: 2;
+      overflow: hidden;
     }
 
     .box::after {
@@ -155,7 +156,7 @@
       letter-spacing: 1px;
       border-bottom: 2px solid #000;
       position: relative;
-      z-index: 3;
+      z-index: 4;
     }
 
     .box-content {
@@ -163,7 +164,7 @@
       font-size: 14px;
       line-height: 1.5;
       position: relative;
-      z-index: 3;
+      z-index: 4;
     }
 
     .profile-frame {
@@ -283,7 +284,7 @@
       font-size: 13px;
       line-height: 1.6;
       position: relative;
-      z-index: 3;
+      z-index: 4;
     }
 
     .fake-ad strong {
@@ -328,15 +329,7 @@
       letter-spacing: 1px;
     }
 
-    .embed-placeholder {
-      border: 2px dashed #c40000;
-      background: #fff5f5;
-      padding: 16px;
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    /* FLOATERS */
+    /* background floaters */
     .floaters {
       position: fixed;
       inset: 0;
@@ -432,6 +425,57 @@
       100% { transform: translate(-54vw, 58vh) rotate(3deg); }
     }
 
+    /* sidebar decorative reused images */
+    .sidebar-sticker {
+      position: absolute;
+      pointer-events: none;
+      z-index: 3;
+      opacity: 0.88;
+      filter: drop-shadow(2px 2px 0 #000);
+    }
+
+    .sidebar-sticker img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .sticker-a {
+      width: 62px;
+      top: 44px;
+      right: 10px;
+      transform: rotate(10deg);
+    }
+
+    .sticker-b {
+      width: 74px;
+      bottom: 14px;
+      right: 12px;
+      transform: rotate(-8deg);
+    }
+
+    .sticker-c {
+      width: 56px;
+      top: 42px;
+      left: 184px;
+      transform: rotate(-12deg);
+    }
+
+    .sticker-d {
+      width: 64px;
+      bottom: 10px;
+      left: 14px;
+      transform: rotate(7deg);
+    }
+
+    .sticker-e {
+      width: 58px;
+      top: 50px;
+      right: 14px;
+      transform: rotate(-6deg);
+      opacity: 0.8;
+    }
+
     @media (max-width: 900px) {
       .layout,
       .two-col,
@@ -447,24 +491,24 @@
       .floater-2 { width: 150px; }
       .floater-3 { width: 110px; }
       .floater-4 { width: 130px; }
+
+      .sticker-a,
+      .sticker-b,
+      .sticker-c,
+      .sticker-d,
+      .sticker-e {
+        width: 48px;
+      }
     }
   </style>
 </head>
 <body>
 
   <div class="floaters" aria-hidden="true">
-    <div class="floater behind floater-1">
-      <img src="images/floater1.png" alt="">
-    </div>
-    <div class="floater front floater-2">
-      <img src="images/floater2.png" alt="">
-    </div>
-    <div class="floater behind floater-3">
-      <img src="images/floater3.png" alt="">
-    </div>
-    <div class="floater front floater-4">
-      <img src="images/floater4.png" alt="">
-    </div>
+    <div class="floater behind floater-1"><img src="images/floater1.png" alt=""></div>
+    <div class="floater front floater-2"><img src="images/floater2.png" alt=""></div>
+    <div class="floater behind floater-3"><img src="images/floater3.png" alt=""></div>
+    <div class="floater front floater-4"><img src="images/floater4.png" alt=""></div>
   </div>
 
   <div class="top-strip">
@@ -490,9 +534,9 @@
   <div class="container">
     <div class="layout">
 
-      <!-- LEFT SIDEBAR -->
       <div>
         <div class="box">
+          <div class="sidebar-sticker sticker-a"><img src="images/floater1.png" alt=""></div>
           <div class="box-title">profile</div>
           <div class="box-content">
             <div class="profile-frame">
@@ -509,6 +553,7 @@
         </div>
 
         <div class="box" id="links">
+          <div class="sidebar-sticker sticker-b"><img src="images/floater2.png" alt=""></div>
           <div class="box-title">links</div>
           <div class="box-content">
             <p><a href="https://soundcloud.com/aceofclubs-188352153" target="_blank">soundcloud</a></p>
@@ -518,7 +563,8 @@
         </div>
 
         <div class="box">
-          <div class="box-title">blinkies </div>
+          <div class="sidebar-sticker sticker-c"><img src="images/floater3.png" alt=""></div>
+          <div class="box-title">blinkies</div>
           <div class="box-content">
             <div class="blinkies">
               <div class="blinkie">hardgroove friendly</div>
@@ -530,6 +576,7 @@
         </div>
 
         <div class="box">
+          <div class="sidebar-sticker sticker-d"><img src="images/floater4.png" alt=""></div>
           <div class="box-title">visitor counter</div>
           <div class="box-content">
             <div class="visitor-counter">000347</div>
@@ -538,6 +585,7 @@
         </div>
 
         <div class="box">
+          <div class="sidebar-sticker sticker-e"><img src="images/floater1.png" alt=""></div>
           <div class="box-title">random info</div>
           <div class="box-content">
             <p><strong>listening:</strong> cars 3 soundtracl</p>
@@ -553,12 +601,11 @@
         </div>
       </div>
 
-      <!-- MAIN COLUMN -->
       <div>
         <div class="box" id="about">
           <div class="box-title">about</div>
           <div class="box-content hero-note">
-            aceofclubs sits between tribal house, techno, hardgroove and spending too long overthinkinh sound. 
+            aceofclubs sits between tribal house, techno, hardgroove and spending too long overthinkinh sound.
             this page is like an old artist profile that never got taken down, just adjusted enough to still feel usable.
             <div class="quote">
               the naked man fears no pickpocket.
