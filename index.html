@@ -21,6 +21,7 @@
         );
       overflow-x: hidden;
       position: relative;
+      cursor: crosshair;
     }
 
     a {
@@ -68,6 +69,7 @@
       box-shadow: inset 0 -2px 0 rgba(255,255,255,0.15);
       position: relative;
       z-index: 20;
+      overflow: hidden;
     }
 
     .header h1 {
@@ -83,6 +85,30 @@
       font-size: 12px;
       letter-spacing: 2px;
       text-transform: uppercase;
+    }
+
+    .ticker-wrap {
+      margin-top: 10px;
+      border: 2px solid #000;
+      background: rgba(255,255,255,0.12);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker {
+      display: inline-block;
+      padding-left: 100%;
+      animation: ticker 18s linear infinite;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+    }
+
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
     }
 
     .nav {
@@ -124,6 +150,7 @@
       position: relative;
       z-index: 2;
       overflow: hidden;
+      transform-origin: center;
     }
 
     .box::after {
@@ -141,8 +168,8 @@
     }
 
     .box:hover {
-      transform: translate(-1px, -1px);
-      box-shadow: 6px 6px 0 #000;
+      transform: translate(-2px, -2px) rotate(-0.2deg);
+      box-shadow: 8px 8px 0 #000;
       transition: 0.15s ease;
     }
 
@@ -188,6 +215,12 @@
       border: 2px solid #c40000;
       background: #f2f2f2;
       filter: contrast(1.05) grayscale(0.08);
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .profile-pic:hover {
+      transform: scale(1.02) rotate(-0.4deg);
+      filter: contrast(1.12) grayscale(0.03);
     }
 
     .mini {
@@ -204,10 +237,16 @@
       margin-right: 6px;
       box-shadow: 0 0 8px #00c700;
       vertical-align: middle;
+      animation: pulse 1.4s infinite;
+    }
+
+    @keyframes pulse {
+      50% { transform: scale(1.25); opacity: 0.8; }
     }
 
     .stamp-row,
-    .blinkies {
+    .blinkies,
+    .badge-row {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
@@ -220,6 +259,12 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .stamp:hover {
+      transform: rotate(-2deg) scale(1.04);
+      background: #ffeaea;
     }
 
     .blinkie {
@@ -230,6 +275,21 @@
       font-size: 11px;
       text-transform: lowercase;
       animation: blink 1s step-start infinite;
+      transition: transform 0.15s ease;
+    }
+
+    .blinkie:hover {
+      transform: translateY(-2px) rotate(-1deg);
+    }
+
+    .badge {
+      border: 1px solid #000;
+      background: #fff6f6;
+      padding: 5px 7px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      box-shadow: 2px 2px 0 #000;
     }
 
     @keyframes blink {
@@ -257,14 +317,25 @@
 
     .track-list .item,
     .blog-list .item,
-    .friends-list .item {
+    .friends-list .item,
+    .shout-list .item {
       padding: 10px 0;
       border-bottom: 1px dashed #c40000;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .track-list .item:hover,
+    .blog-list .item:hover,
+    .friends-list .item:hover,
+    .shout-list .item:hover {
+      transform: translateX(4px);
+      background: rgba(255, 230, 230, 0.45);
     }
 
     .track-list .item:last-child,
     .blog-list .item:last-child,
-    .friends-list .item:last-child {
+    .friends-list .item:last-child,
+    .shout-list .item:last-child {
       border-bottom: none;
     }
 
@@ -310,6 +381,204 @@
       letter-spacing: 2px;
     }
 
+    .warning {
+      color: #c40000;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    .widget-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .mini-widget {
+      border: 1px solid #000;
+      background: #fafafa;
+      padding: 8px;
+      font-size: 12px;
+    }
+
+    .mini-widget strong {
+      display: block;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: #c40000;
+    }
+
+    .wisdom-button,
+    .guestbook-button {
+      appearance: none;
+      border: 2px solid #000;
+      background: #c40000;
+      color: #fff;
+      padding: 9px 12px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 #000;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+    }
+
+    .wisdom-button:hover,
+    .guestbook-button:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 5px 5px 0 #000;
+      background: #a50000;
+    }
+
+    .wisdom-box {
+      margin-top: 12px;
+      padding: 12px;
+      border: 2px dashed #c40000;
+      background: #fff7f7;
+      min-height: 48px;
+      font-style: italic;
+    }
+
+    .guestbook-form {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .guestbook-form input,
+    .guestbook-form textarea {
+      width: 100%;
+      box-sizing: border-box;
+      border: 2px solid #000;
+      background: #fff;
+      padding: 9px;
+      font-family: inherit;
+      font-size: 13px;
+      resize: vertical;
+    }
+
+    .guestbook-form textarea {
+      min-height: 88px;
+    }
+
+    .guestbook-note {
+      font-size: 11px;
+      color: #666;
+      margin-top: -2px;
+    }
+
+    .cassette-wrap {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cassette {
+      width: 170px;
+      height: 100px;
+      background: linear-gradient(to bottom, #1e1e1e, #0f0f0f);
+      border: 2px solid #c40000;
+      box-shadow: 4px 4px 0 #000;
+      position: relative;
+      color: #fff;
+    }
+
+    .cassette::before {
+      content: "aceofclubs demo tape";
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      right: 12px;
+      background: #f2f2f2;
+      color: #111;
+      text-align: center;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 6px;
+      border: 1px solid #000;
+    }
+
+    .cassette-window {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 18px;
+      height: 34px;
+      border: 2px solid #c40000;
+      background: #fff6f6;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .reel {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #000;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fff 20%, #999 21%, #999 40%, #fff 41%);
+      animation: spin 2.4s linear infinite;
+    }
+
+    .tape-line {
+      width: 42px;
+      height: 2px;
+      background: #000;
+    }
+
+    .cd {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, #fff 0 10px, #bbb 10px 12px, transparent 12px),
+        conic-gradient(from 0deg, #efefef, #d9d9d9, #f5f5f5, #d0d0d0, #efefef);
+      border: 2px solid #000;
+      box-shadow: 4px 4px 0 #000;
+      animation: spin 5s linear infinite;
+      position: relative;
+    }
+
+    .cd::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: 50%;
+      border: 1px solid rgba(196,0,0,0.45);
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    .under-construction {
+      display: inline-block;
+      margin-top: 10px;
+      border: 2px solid #000;
+      background: repeating-linear-gradient(
+        45deg,
+        #ffe000 0px,
+        #ffe000 8px,
+        #111 8px,
+        #111 16px
+      );
+      color: #000;
+      padding: 6px 9px;
+      font-size: 10px;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
     .footer {
       margin-top: 26px;
       text-align: center;
@@ -319,14 +588,6 @@
       border-top: 2px solid #c40000;
       position: relative;
       z-index: 20;
-    }
-
-    .warning {
-      color: #c40000;
-      font-weight: bold;
-      text-transform: uppercase;
-      font-size: 12px;
-      letter-spacing: 1px;
     }
 
     /* background floaters */
@@ -479,7 +740,8 @@
     @media (max-width: 900px) {
       .layout,
       .two-col,
-      .small-grid {
+      .small-grid,
+      .widget-row {
         grid-template-columns: 1fr;
       }
 
@@ -520,6 +782,11 @@
   <div class="header">
     <h1>aceofclubs</h1>
     <div class="sub">last updated: ??? // status: unknown</div>
+    <div class="ticker-wrap">
+      <div class="ticker">
+        now loading: pressure // mix status: spiritually clipping // guestbook currently accepting compliments and lies // best viewed: too late at night // laptop still employed somehow //
+      </div>
+    </div>
   </div>
 
   <div class="nav">
@@ -529,6 +796,7 @@
     <a href="#updates">updates</a>
     <a href="#extras">extras</a>
     <a href="#links">links</a>
+    <a href="#guestbook">guestbook</a>
   </div>
 
   <div class="container">
@@ -549,6 +817,7 @@
             <p class="mini">currently: cookin</p>
             <p class="mini">mood: locked in</p>
             <p class="mini">webpage not for the faint hearted</p>
+            <div class="under-construction">under construction but emotionally stable</div>
           </div>
         </div>
 
@@ -588,9 +857,40 @@
           <div class="sidebar-sticker sticker-e"><img src="images/floater1.png" alt=""></div>
           <div class="box-title">random info</div>
           <div class="box-content">
-            <p><strong>listening:</strong> cars 3 soundtracl</p>
+            <p><strong>listening:</strong> cars 3 soundtrack</p>
             <p><strong>gear:</strong> laptop asking for some PTO</p>
             <p><strong>open tabs:</strong> soundCloud / compressor manual / one suspicious forum post from 2008</p>
+            <div class="badge-row">
+              <div class="badge">mixing since 3am</div>
+              <div class="badge">kick not negotiated</div>
+              <div class="badge">site fact: no one asked</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="box-title">now playing / mood</div>
+          <div class="box-content">
+            <div class="widget-row">
+              <div class="mini-widget">
+                <strong>now playing</strong>
+                <span id="nowPlayingText">some loop that was meant to be temporary</span>
+              </div>
+              <div class="mini-widget">
+                <strong>current mood</strong>
+                <span id="moodText">suspiciously optimistic</span>
+              </div>
+            </div>
+            <div class="widget-row">
+              <div class="mini-widget">
+                <strong>mix status</strong>
+                spiritually clipping
+              </div>
+              <div class="mini-widget">
+                <strong>site warning</strong>
+                may contain unreasonable confidence
+              </div>
+            </div>
           </div>
         </div>
 
@@ -651,9 +951,10 @@
           </div>
 
           <div class="box">
-            <div class="box-title">influences</div>
+            <div class="box-title">press for wisdom</div>
             <div class="box-content">
-              ben sims / dj rush / leod / percussion that sounds expensive and slightly dangerous
+              <button class="wisdom-button" id="wisdomButton" type="button">press for wisdom</button>
+              <div class="wisdom-box" id="wisdomBox">press the button and receive something between advice and slander.</div>
             </div>
           </div>
         </div>
@@ -671,11 +972,19 @@
           </div>
 
           <div class="box">
-            <div class="box-title">mini blogbox</div>
+            <div class="box-title">cassette / compact disc department</div>
             <div class="box-content">
-              <p><span class="warning">note:</span> this is not a normal website.</p>
-              <p>it is better viewed with the idea that somewhere a 2007 blogspot page is haunting it.</p>
-              <p>the goal is pressure, not perfection.</p>
+              <div class="cassette-wrap">
+                <div class="cassette">
+                  <div class="cassette-window">
+                    <div class="reel"></div>
+                    <div class="tape-line"></div>
+                    <div class="reel"></div>
+                  </div>
+                </div>
+                <div class="cd"></div>
+              </div>
+              <p class="mini" style="margin-top: 12px;">physical media appreciation zone // no skips, only consequences</p>
             </div>
           </div>
         </div>
@@ -692,21 +1001,36 @@
           </div>
 
           <div class="box">
-            <div class="box-title">site facts</div>
+            <div class="box-title">site facts / fake awards</div>
             <div class="box-content">
               <p>best viewed: too late at night</p>
               <p>theme: white / red / black / overthinking</p>
               <p>page type: artist profile / digital noticeboard / mild threat</p>
+              <div class="badge-row">
+                <div class="badge">laptop survivor 2026</div>
+                <div class="badge">certified overthinker</div>
+                <div class="badge">kick drum union</div>
+                <div class="badge">underqualified legend</div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="box">
-          <div class="box-title">guestbook energy</div>
+        <div class="box" id="guestbook">
+          <div class="box-title">guestbook / shoutbox / accusations</div>
           <div class="box-content">
-            no real guestbook yet.<br>
-            imagine somebody said “legend” here and left.
-            - Jeff Mill(ion)s
+            <form class="guestbook-form" id="guestbookForm">
+              <input type="text" id="guestName" placeholder="name / alias / liar" />
+              <textarea id="guestMessage" placeholder="leave a compliment, lie, threat, or review of the kick drum"></textarea>
+              <button class="guestbook-button" type="submit">sign guestbook</button>
+            </form>
+            <div class="guestbook-note">not actually sent anywhere. purely for atmosphere and local nonsense.</div>
+
+            <div class="shout-list" id="shoutList" style="margin-top: 12px;">
+              <div class="item"><strong>Jeff Mill(ion)s:</strong> legend</div>
+              <div class="item"><strong>anonymous forum user:</strong> kick still too loud but spiritually correct</div>
+              <div class="item"><strong>that one aussie:</strong> proper pressure on this one</div>
+            </div>
           </div>
         </div>
 
@@ -717,6 +1041,69 @@
       made with html & bad decisions // aceofclubs © 2026
     </div>
   </div>
+
+  <script>
+    const wisdomLines = [
+      "the limiter is not your enemy, but it knows what you did.",
+      "if the kick feels too loud, it might finally be right.",
+      "delete three plugins before making any major life decision.",
+      "most problems can be solved by muting the wrong channel.",
+      "the groove improves the second you stop showing off.",
+      "reference tracks are just humbling in audio form.",
+      "if it sounds expensive and slightly dangerous, keep going.",
+      "you do not need another riser. stand down.",
+      "save the project now. this is not a test.",
+      "sometimes the best arrangement is simply less of it."
+    ];
+
+    const nowPlayingLines = [
+      "some loop that was meant to be temporary",
+      "the same 8 bars but with stronger opinions",
+      "a hi-hat pattern that thinks it runs the room",
+      "something half-finished and already overhyped",
+      "the kick soloed for no defensible reason"
+    ];
+
+    const moodLines = [
+      "suspiciously optimistic",
+      "locked in but hydrating poorly",
+      "one export away from enlightenment",
+      "confident for no real reason",
+      "mildly haunted by old forum advice"
+    ];
+
+    const wisdomButton = document.getElementById("wisdomButton");
+    const wisdomBox = document.getElementById("wisdomBox");
+    const nowPlayingText = document.getElementById("nowPlayingText");
+    const moodText = document.getElementById("moodText");
+
+    wisdomButton.addEventListener("click", () => {
+      const line = wisdomLines[Math.floor(Math.random() * wisdomLines.length)];
+      wisdomBox.textContent = line;
+    });
+
+    setInterval(() => {
+      nowPlayingText.textContent = nowPlayingLines[Math.floor(Math.random() * nowPlayingLines.length)];
+      moodText.textContent = moodLines[Math.floor(Math.random() * moodLines.length)];
+    }, 4500);
+
+    const guestbookForm = document.getElementById("guestbookForm");
+    const guestName = document.getElementById("guestName");
+    const guestMessage = document.getElementById("guestMessage");
+    const shoutList = document.getElementById("shoutList");
+
+    guestbookForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = guestName.value.trim() || "anonymous troublemaker";
+      const message = guestMessage.value.trim() || "said nothing but definitely meant something.";
+      const item = document.createElement("div");
+      item.className = "item";
+      item.innerHTML = "<strong>" + name.replace(/</g, "&lt;").replace(/>/g, "&gt;") + ":</strong> " + message.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      shoutList.prepend(item);
+      guestName.value = "";
+      guestMessage.value = "";
+    });
+  </script>
 
 </body>
 </html>
