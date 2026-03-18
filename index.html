@@ -271,17 +271,6 @@
       text-decoration: none;
     }
 
-    .teaser-wrap {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 16px;
-      align-items: center;
-    }
-
-    .teaser-copy {
-      min-width: 0;
-    }
-
     .teaser-tag {
       display: inline-block;
       font-size: 11px;
@@ -293,16 +282,190 @@
       margin-bottom: 10px;
     }
 
-    audio {
-      width: 100%;
-      margin-top: 10px;
+    .teaser-player-shell {
+      border: 2px solid #000;
+      background: linear-gradient(to bottom, #1c1c1c, #0c0c0c);
+      box-shadow: 4px 4px 0 #000;
+      padding: 14px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
     }
 
-    .latest-layout {
+    .teaser-player-shell::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      width: 42px;
+      height: 12px;
+      background: rgba(255,255,255,0.18);
+      transform: rotate(12deg);
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .teaser-player-shell::after {
+      content: "";
+      position: absolute;
+      bottom: 8px;
+      left: 10px;
+      width: 34px;
+      height: 10px;
+      background: rgba(255,255,255,0.14);
+      transform: rotate(-10deg);
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .teaser-topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .teaser-topline strong {
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .teaser-status {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #ff9d9d;
+    }
+
+    .teaser-middle {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      align-items: start;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .play-button {
+      appearance: none;
+      border: 2px solid #fff;
+      background: #c40000;
+      color: #fff;
+      padding: 14px 16px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 #000;
+      transform: rotate(-1deg);
+      transition: all 0.12s ease;
+      min-width: 150px;
+    }
+
+    .play-button:hover {
+      transform: translate(-2px, -2px) rotate(1deg);
+      box-shadow: 6px 6px 0 #000;
+      background: #a50000;
+    }
+
+    .play-button.playing {
+      background: #000;
+      color: #fff;
+      border-color: #ffb3b3;
+    }
+
+    .teaser-visuals {
+      min-width: 0;
+    }
+
+    .wave-grid {
+      display: grid;
+      grid-template-columns: repeat(18, 1fr);
+      gap: 4px;
+      align-items: end;
+      height: 56px;
+      margin-bottom: 8px;
+    }
+
+    .wave-bar {
+      background: linear-gradient(to top, #c40000, #ff7b7b);
+      border: 1px solid rgba(255,255,255,0.18);
+      height: 18%;
+      animation: idleWave 1.6s ease-in-out infinite;
+      transform-origin: bottom;
+    }
+
+    .wave-bar:nth-child(2n) { animation-duration: 1.2s; }
+    .wave-bar:nth-child(3n) { animation-duration: 1.8s; }
+    .wave-bar:nth-child(4n) { animation-duration: 1.35s; }
+
+    .wave-grid.playing .wave-bar:nth-child(1)  { animation-name: liveWave1; }
+    .wave-grid.playing .wave-bar:nth-child(2)  { animation-name: liveWave2; }
+    .wave-grid.playing .wave-bar:nth-child(3)  { animation-name: liveWave3; }
+    .wave-grid.playing .wave-bar:nth-child(4)  { animation-name: liveWave4; }
+    .wave-grid.playing .wave-bar:nth-child(5)  { animation-name: liveWave5; }
+    .wave-grid.playing .wave-bar:nth-child(6)  { animation-name: liveWave2; }
+    .wave-grid.playing .wave-bar:nth-child(7)  { animation-name: liveWave4; }
+    .wave-grid.playing .wave-bar:nth-child(8)  { animation-name: liveWave1; }
+    .wave-grid.playing .wave-bar:nth-child(9)  { animation-name: liveWave3; }
+    .wave-grid.playing .wave-bar:nth-child(10) { animation-name: liveWave5; }
+    .wave-grid.playing .wave-bar:nth-child(11) { animation-name: liveWave2; }
+    .wave-grid.playing .wave-bar:nth-child(12) { animation-name: liveWave4; }
+    .wave-grid.playing .wave-bar:nth-child(13) { animation-name: liveWave1; }
+    .wave-grid.playing .wave-bar:nth-child(14) { animation-name: liveWave3; }
+    .wave-grid.playing .wave-bar:nth-child(15) { animation-name: liveWave5; }
+    .wave-grid.playing .wave-bar:nth-child(16) { animation-name: liveWave2; }
+    .wave-grid.playing .wave-bar:nth-child(17) { animation-name: liveWave4; }
+    .wave-grid.playing .wave-bar:nth-child(18) { animation-name: liveWave1; }
+
+    @keyframes idleWave {
+      0%, 100% { height: 18%; opacity: 0.6; }
+      50% { height: 28%; opacity: 0.9; }
+    }
+
+    @keyframes liveWave1 {
+      0%, 100% { height: 18%; }
+      30% { height: 84%; }
+      60% { height: 36%; }
+    }
+
+    @keyframes liveWave2 {
+      0%, 100% { height: 26%; }
+      30% { height: 62%; }
+      60% { height: 92%; }
+    }
+
+    @keyframes liveWave3 {
+      0%, 100% { height: 14%; }
+      30% { height: 72%; }
+      60% { height: 46%; }
+    }
+
+    @keyframes liveWave4 {
+      0%, 100% { height: 24%; }
+      30% { height: 52%; }
+      60% { height: 88%; }
+    }
+
+    @keyframes liveWave5 {
+      0%, 100% { height: 20%; }
+      30% { height: 95%; }
+      60% { height: 40%; }
+    }
+
+    .teaser-meta {
+      font-size: 11px;
+      color: #d8d8d8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hidden-audio {
+      display: none;
     }
 
     .release-callout {
@@ -460,7 +623,6 @@
       line-height: 1.7;
     }
 
-    /* background floaters */
     .floaters {
       position: fixed;
       inset: 0;
@@ -635,7 +797,7 @@
 
     @media (max-width: 900px) {
       .profile-layout,
-      .latest-layout {
+      .teaser-middle {
         grid-template-columns: 1fr;
       }
 
@@ -645,6 +807,11 @@
 
       .header h1 {
         font-size: 30px;
+      }
+
+      .play-button {
+        width: 100%;
+        min-width: 0;
       }
 
       .floater-1 { width: 120px; }
@@ -678,6 +845,7 @@
   <div class="header">
     <h1>aceofclubs</h1>
     <div class="sub">control loop — upcoming release</div>
+    <div class="sub">short-form hook, clean funnel, no distractions</div>
   </div>
 
   <div class="nav">
@@ -709,12 +877,47 @@
       <div class="box" id="teaser">
         <div class="box-title">control loop — teaser</div>
         <div class="box-content">
-          <div class="teaser-wrap">
-            <div class="teaser-copy">
-              <div class="teaser-tag">upcoming release</div>
+          <div class="teaser-tag">5–8 second hook focused rollout</div>
+          <p style="margin-top:0; margin-bottom:12px;">
+            The page is built to catch short-form traffic and convert it into listens. Keep the path simple: click, hear the idea, follow through.
+          </p>
+
+          <div class="teaser-player-shell">
+            <div class="teaser-topline">
+              <strong>control loop / teaser device</strong>
+              <span class="teaser-status" id="teaserStatus">armed</span>
+            </div>
+
+            <div class="teaser-middle">
+              <button class="play-button" id="playBtn" type="button">▶ play teaser</button>
+
+              <div class="teaser-visuals">
+                <div class="wave-grid" id="waveGrid">
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                </div>
+                <div class="teaser-meta" id="teaserMeta">hook ready // press play // no filler</div>
+              </div>
             </div>
           </div>
-          <audio controls>
+
+          <audio id="teaserAudio" class="hidden-audio">
             <source src="teaser.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
@@ -747,32 +950,33 @@
 
       <div class="box" id="about">
         <div class="box-title">about</div>
-        <div class="box-content hero-note">
+        <div class="box-content">
           aceofclubs sits between tribal house, techno, hardgroove and spending too long overthinking sound.
+          this page is now less of a profile archive and more of a conversion point for <strong>Control Loop</strong> — one clear place to land, hear a teaser, and move toward the release.
           <div class="quote">
-            the naked man fears no pickpocket.
+            the hook goes first. everything else stays out of the way.
           </div>
         </div>
       </div>
 
       <div class="box" id="latest">
-  <div class="sidebar-sticker sticker-c"><img src="images/floater3.png" alt=""></div>
-  <div class="box-title">latest live track</div>
-  <div class="box-content">
-    <iframe
-      width="100%"
-      height="166"
-      scrolling="no"
-      frameborder="no"
-      allow="autoplay"
-      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2281873088&color=%23f50808&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
-    </iframe>
-    <div style="font-size: 10px; color: #cccccc; line-break: anywhere; word-break: normal; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif; font-weight: 100;">
-      <a href="https://soundcloud.com/aceofclubs-188352153" title="aceofclubs" target="_blank" style="color: #cccccc; text-decoration: none;">aceofclubs</a> ·
-      <a href="https://soundcloud.com/aceofclubs-188352153/ignition-1" title="Ignition" target="_blank" style="color: #cccccc; text-decoration: none;">Ignition</a>
-    </div>
-  </div>
-</div>
+        <div class="sidebar-sticker sticker-c"><img src="images/floater3.png" alt=""></div>
+        <div class="box-title">latest live track</div>
+        <div class="box-content">
+          <iframe
+            width="100%"
+            height="166"
+            scrolling="no"
+            frameborder="no"
+            allow="autoplay"
+            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2281873088&color=%23f50808&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+          </iframe>
+          <div style="font-size: 10px; color: #cccccc; line-break: anywhere; word-break: normal; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif; font-weight: 100;">
+            <a href="https://soundcloud.com/aceofclubs-188352153" title="aceofclubs" target="_blank" style="color: #cccccc; text-decoration: none;">aceofclubs</a> ·
+            <a href="https://soundcloud.com/aceofclubs-188352153/ignition-1" title="Ignition" target="_blank" style="color: #cccccc; text-decoration: none;">Ignition</a>
+          </div>
+        </div>
+      </div>
 
       <div class="box" id="top5">
         <div class="box-title">top 5 tracks i enjoy</div>
@@ -873,6 +1077,40 @@
       shoutList.prepend(item);
       guestName.value = "";
       guestMessage.value = "";
+    });
+
+    const teaserAudio = document.getElementById("teaserAudio");
+    const playBtn = document.getElementById("playBtn");
+    const teaserStatus = document.getElementById("teaserStatus");
+    const teaserMeta = document.getElementById("teaserMeta");
+    const waveGrid = document.getElementById("waveGrid");
+
+    playBtn.addEventListener("click", () => {
+      if (teaserAudio.paused) {
+        teaserAudio.play();
+        playBtn.textContent = "■ stop teaser";
+        playBtn.classList.add("playing");
+        teaserStatus.textContent = "live";
+        teaserMeta.textContent = "now playing // control loop hook engaged";
+        waveGrid.classList.add("playing");
+      } else {
+        teaserAudio.pause();
+        teaserAudio.currentTime = 0;
+        playBtn.textContent = "▶ play teaser";
+        playBtn.classList.remove("playing");
+        teaserStatus.textContent = "armed";
+        teaserMeta.textContent = "hook ready // press play // no filler";
+        waveGrid.classList.remove("playing");
+      }
+    });
+
+    teaserAudio.addEventListener("ended", () => {
+      playBtn.textContent = "▶ play teaser";
+      playBtn.classList.remove("playing");
+      teaserStatus.textContent = "armed";
+      teaserMeta.textContent = "hook ready // press play // no filler";
+      waveGrid.classList.remove("playing");
+      teaserAudio.currentTime = 0;
     });
   </script>
 
