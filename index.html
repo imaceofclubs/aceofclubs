@@ -1,1060 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>aceofclubs</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background:
-        linear-gradient(to bottom, #ffffff 0%, #f8f8f8 100%);
-      color: #111;
-      background-image:
-        repeating-linear-gradient(
-          0deg,
-          rgba(255,0,0,0.03) 0px,
-          rgba(255,0,0,0.03) 1px,
-          transparent 1px,
-          transparent 32px
-        );
-      overflow-x: hidden;
-      position: relative;
-      cursor: crosshair;
-    }
-
-    a {
-      color: #c40000;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    a:hover {
-      text-decoration: underline;
-      background: #ffe5e5;
-    }
-
-    .top-strip {
-      background: #000;
-      color: #fff;
-      font-size: 11px;
-      padding: 6px 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-bottom: 2px solid #c40000;
-      white-space: nowrap;
-      overflow: hidden;
-      position: relative;
-      z-index: 20;
-    }
-
-    .marquee {
-      display: inline-block;
-      padding-left: 100%;
-      animation: marquee 16s linear infinite;
-    }
-
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
-
-    .header {
-      background: linear-gradient(to bottom, #d40000, #9a0000);
-      color: white;
-      text-align: center;
-      padding: 18px 12px 16px;
-      border-bottom: 4px solid #000;
-      box-shadow: inset 0 -2px 0 rgba(255,255,255,0.15);
-      position: relative;
-      z-index: 20;
-      overflow: hidden;
-    }
-
-    .header h1 {
-      margin: 0;
-      font-size: 42px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      text-shadow: none;
-    }
-
-    .header .sub {
-      margin-top: 6px;
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .ticker-wrap {
-      margin-top: 10px;
-      border: 2px solid #000;
-      background: rgba(255,255,255,0.12);
-      overflow: hidden;
-      white-space: nowrap;
-    }
-
-    .ticker {
-      display: inline-block;
-      padding-left: 100%;
-      animation: ticker 18s linear infinite;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding-top: 6px;
-      padding-bottom: 6px;
-    }
-
-    @keyframes ticker {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
-
-    .nav {
-      background: #fff;
-      border-bottom: 2px solid #c40000;
-      text-align: center;
-      padding: 10px;
-      font-size: 13px;
-      position: relative;
-      z-index: 20;
-    }
-
-    .nav a {
-      margin: 0 10px;
-      display: inline-block;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 18px auto;
-      padding: 0 14px 30px;
-      position: relative;
-      z-index: 10;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 18px;
-      position: relative;
-      z-index: 10;
-    }
-
-    .box {
-      background: #fff;
-      border: 2px solid #c40000;
-      margin-bottom: 18px;
-      box-shadow: 4px 4px 0 #000;
-      position: relative;
-      z-index: 2;
-      overflow: hidden;
-      transform-origin: center;
-    }
-
-    .box::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background-image: repeating-linear-gradient(
-        0deg,
-        rgba(0,0,0,0.015) 0px,
-        rgba(0,0,0,0.015) 1px,
-        transparent 1px,
-        transparent 3px
-      );
-    }
-
-    .box:hover {
-      transform: translate(-2px, -2px) rotate(-0.2deg);
-      box-shadow: 8px 8px 0 #000;
-      transition: 0.15s ease;
-    }
-
-    .box-title {
-      background: #c40000;
-      color: #fff;
-      padding: 8px 10px;
-      font-size: 13px;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-bottom: 2px solid #000;
-      position: relative;
-      z-index: 4;
-    }
-
-    .box-content {
-      padding: 12px;
-      font-size: 14px;
-      line-height: 1.5;
-      position: relative;
-      z-index: 4;
-    }
-
-    .profile-frame {
-      border: 2px dashed #c40000;
-      padding: 4px;
-      margin-bottom: 10px;
-      background: repeating-linear-gradient(
-        45deg,
-        #f0f0f0,
-        #f0f0f0 10px,
-        #e5e5e5 10px,
-        #e5e5e5 20px
-      );
-    }
-
-    .profile-pic {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      display: block;
-      border: 2px solid #c40000;
-      background: #f2f2f2;
-      filter: contrast(1.05) grayscale(0.08);
-      transition: transform 0.2s ease, filter 0.2s ease;
-    }
-
-    .profile-pic:hover {
-      transform: scale(1.02) rotate(-0.4deg);
-      filter: contrast(1.12) grayscale(0.03);
-    }
-
-    .mini {
-      font-size: 12px;
-      color: #555;
-    }
-
-    .status-light {
-      display: inline-block;
-      width: 9px;
-      height: 9px;
-      background: #00c700;
-      border-radius: 50%;
-      margin-right: 6px;
-      box-shadow: 0 0 8px #00c700;
-      vertical-align: middle;
-      animation: pulse 1.4s infinite;
-    }
-
-    @keyframes pulse {
-      50% { transform: scale(1.25); opacity: 0.8; }
-    }
-
-    .stamp-row,
-    .blinkies,
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .stamp {
-      border: 1px solid #000;
-      background: #f6f6f6;
-      padding: 6px 8px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      transition: transform 0.15s ease, background 0.15s ease;
-    }
-
-    .stamp:hover {
-      transform: rotate(-2deg) scale(1.04);
-      background: #ffeaea;
-    }
-
-    .blinkie {
-      background: #000;
-      color: #fff;
-      border: 1px solid #c40000;
-      padding: 5px 8px;
-      font-size: 11px;
-      text-transform: lowercase;
-      animation: blink 1s step-start infinite;
-      transition: transform 0.15s ease;
-    }
-
-    .blinkie:hover {
-      transform: translateY(-2px) rotate(-1deg);
-    }
-
-    .badge {
-      border: 1px solid #000;
-      background: #fff6f6;
-      padding: 5px 7px;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      box-shadow: 2px 2px 0 #000;
-    }
-
-    @keyframes blink {
-      50% { opacity: 0.45; }
-    }
-
-    .hero-note {
-      font-size: 15px;
-      line-height: 1.7;
-    }
-
-    .quote {
-      border-left: 4px solid #c40000;
-      padding-left: 10px;
-      margin: 10px 0;
-      font-style: italic;
-      color: #444;
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 18px;
-    }
-
-    .track-list .item,
-    .blog-list .item,
-    .friends-list .item,
-    .shout-list .item {
-      padding: 10px 0;
-      border-bottom: 1px dashed #c40000;
-      transition: transform 0.15s ease, background 0.15s ease;
-    }
-
-    .track-list .item:hover,
-    .blog-list .item:hover,
-    .friends-list .item:hover,
-    .shout-list .item:hover {
-      transform: translateX(4px);
-      background: rgba(255, 230, 230, 0.45);
-    }
-
-    .track-list .item:last-child,
-    .blog-list .item:last-child,
-    .friends-list .item:last-child,
-    .shout-list .item:last-child {
-      border-bottom: none;
-    }
-
-    .track-num {
-      display: inline-block;
-      width: 26px;
-      font-weight: bold;
-      color: #c40000;
-    }
-
-    .fake-ad {
-      background: #000;
-      color: #fff;
-      text-align: center;
-      padding: 14px 10px;
-      border: 2px solid #c40000;
-      font-size: 13px;
-      line-height: 1.6;
-      position: relative;
-      z-index: 4;
-    }
-
-    .fake-ad strong {
-      color: #ff4d4d;
-      font-size: 18px;
-      text-transform: uppercase;
-    }
-
-    .small-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    .visitor-counter {
-      font-family: "Courier New", monospace;
-      background: #111;
-      color: #00ff66;
-      padding: 8px 10px;
-      display: inline-block;
-      border: 2px inset #666;
-      font-size: 18px;
-      letter-spacing: 2px;
-    }
-
-    .warning {
-      color: #c40000;
-      font-weight: bold;
-      text-transform: uppercase;
-      font-size: 12px;
-      letter-spacing: 1px;
-    }
-
-    .widget-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .mini-widget {
-      border: 1px solid #000;
-      background: #fafafa;
-      padding: 8px;
-      font-size: 12px;
-    }
-
-    .mini-widget strong {
-      display: block;
-      margin-bottom: 4px;
-      text-transform: uppercase;
-      font-size: 10px;
-      letter-spacing: 1px;
-      color: #c40000;
-    }
-
-    .wisdom-button,
-    .guestbook-button {
-      appearance: none;
-      border: 2px solid #000;
-      background: #c40000;
-      color: #fff;
-      padding: 9px 12px;
-      font-family: inherit;
-      font-size: 12px;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      cursor: pointer;
-      box-shadow: 3px 3px 0 #000;
-      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
-    }
-
-    .wisdom-button:hover,
-    .guestbook-button:hover {
-      transform: translate(-1px, -1px);
-      box-shadow: 5px 5px 0 #000;
-      background: #a50000;
-    }
-
-    .wisdom-box {
-      margin-top: 12px;
-      padding: 12px;
-      border: 2px dashed #c40000;
-      background: #fff7f7;
-      min-height: 48px;
-      font-style: italic;
-    }
-
-    .guestbook-form {
-      display: grid;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .guestbook-form input,
-    .guestbook-form textarea {
-      width: 100%;
-      box-sizing: border-box;
-      border: 2px solid #000;
-      background: #fff;
-      padding: 9px;
-      font-family: inherit;
-      font-size: 13px;
-      resize: vertical;
-    }
-
-    .guestbook-form textarea {
-      min-height: 88px;
-    }
-
-    .guestbook-note {
-      font-size: 11px;
-      color: #666;
-      margin-top: -2px;
-    }
-
-    .under-construction {
-      display: inline-block;
-      margin-top: 10px;
-      border: 2px solid #000;
-      background: repeating-linear-gradient(
-        45deg,
-        #ffe000 0px,
-        #ffe000 8px,
-        #000 8px,
-        #000 16px
-      );
-      color: #000;
-      padding: 6px 9px;
-      font-size: 10px;
-      text-transform: uppercase;
-      font-weight: bold;
-      letter-spacing: 1px;
-      text-shadow: 1px 1px 0 #fff;
-    }
-
-    .footer {
-      margin-top: 26px;
-      text-align: center;
-      font-size: 12px;
-      color: #444;
-      padding: 18px 10px 30px;
-      border-top: 2px solid #c40000;
-      position: relative;
-      z-index: 20;
-    }
-
-    /* background floaters */
-    .floaters {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .floater {
-      position: absolute;
-      user-select: none;
-      will-change: transform;
-    }
-
-    .floater img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border: 6px solid #fff;
-      box-shadow: 4px 4px 0 #000;
-      background: #fff;
-      filter: contrast(1.08) saturate(0.95);
-    }
-
-    .floater::before,
-    .floater::after {
-      content: "";
-      position: absolute;
-      width: 34px;
-      height: 14px;
-      background: rgba(255,255,255,0.7);
-      border: 1px solid rgba(0,0,0,0.1);
-      box-shadow: 1px 1px 0 rgba(0,0,0,0.15);
-      z-index: 2;
-    }
-
-    .floater::before {
-      top: -8px;
-      left: 12px;
-      transform: rotate(-16deg);
-    }
-
-    .floater::after {
-      bottom: -8px;
-      right: 10px;
-      transform: rotate(13deg);
-    }
-
-    .floater.behind {
-      z-index: 1;
-      opacity: 0.2;
-    }
-
-    .floater.front {
-      z-index: 15;
-      opacity: 0.13;
-      mix-blend-mode: multiply;
-    }
-
-    .floater-1 {
-      width: 180px;
-      top: 8%;
-      left: -10%;
-      animation: drift1 32s ease-in-out infinite alternate;
-      transform: rotate(-8deg);
-    }
-
-    .floater-2 {
-      width: 220px;
-      top: 52%;
-      right: -12%;
-      animation: drift2 38s ease-in-out infinite alternate;
-      transform: rotate(7deg);
-    }
-
-    .floater-3 {
-      width: 140px;
-      top: 76%;
-      left: 12%;
-      animation: drift3 28s ease-in-out infinite alternate;
-      transform: rotate(-12deg);
-    }
-
-    .floater-4 {
-      width: 200px;
-      top: 18%;
-      right: 16%;
-      animation: drift4 35s ease-in-out infinite alternate;
-      transform: rotate(10deg);
-    }
-
-    @keyframes drift1 {
-      0%   { transform: translate(0, 0) rotate(-8deg); }
-      25%  { transform: translate(45vw, 12vh) rotate(3deg); }
-      50%  { transform: translate(28vw, 42vh) rotate(-6deg); }
-      75%  { transform: translate(62vw, 24vh) rotate(9deg); }
-      100% { transform: translate(35vw, 60vh) rotate(-2deg); }
-    }
-
-    @keyframes drift2 {
-      0%   { transform: translate(0, 0) rotate(7deg); }
-      25%  { transform: translate(-42vw, -18vh) rotate(-3deg); }
-      50%  { transform: translate(-58vw, 10vh) rotate(8deg); }
-      75%  { transform: translate(-24vw, -30vh) rotate(-7deg); }
-      100% { transform: translate(-64vw, -46vh) rotate(4deg); }
-    }
-
-    @keyframes drift3 {
-      0%   { transform: translate(0, 0) rotate(-12deg); }
-      25%  { transform: translate(20vw, -18vh) rotate(-2deg); }
-      50%  { transform: translate(56vw, -36vh) rotate(11deg); }
-      75%  { transform: translate(34vw, -52vh) rotate(-5deg); }
-      100% { transform: translate(68vw, -16vh) rotate(6deg); }
-    }
-
-    @keyframes drift4 {
-      0%   { transform: translate(0, 0) rotate(10deg); }
-      25%  { transform: translate(-18vw, 22vh) rotate(-4deg); }
-      50%  { transform: translate(-44vw, 46vh) rotate(5deg); }
-      75%  { transform: translate(-8vw, 30vh) rotate(-9deg); }
-      100% { transform: translate(-54vw, 58vh) rotate(3deg); }
-    }
-
-    /* sidebar decorative reused images */
-    .sidebar-sticker {
-      position: absolute;
-      pointer-events: none;
-      z-index: 3;
-      opacity: 0.96;
-      filter: drop-shadow(2px 2px 0 #000);
-    }
-
-    .sidebar-sticker img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border: 4px solid #fff;
-      box-shadow: 2px 2px 0 #000;
-      background: #fff;
-    }
-
-    .sidebar-sticker::before {
-      content: "";
-      position: absolute;
-      width: 24px;
-      height: 10px;
-      background: rgba(255,255,255,0.72);
-      border: 1px solid rgba(0,0,0,0.08);
-      top: -6px;
-      left: 8px;
-      transform: rotate(-18deg);
-    }
-
-    .sticker-a {
-      width: 62px;
-      top: 44px;
-      right: 10px;
-      transform: rotate(10deg);
-    }
-
-    .sticker-b {
-      width: 74px;
-      bottom: 14px;
-      right: 12px;
-      transform: rotate(-8deg);
-    }
-
-    .sticker-c {
-      width: 56px;
-      top: 42px;
-      left: 184px;
-      transform: rotate(-12deg);
-    }
-
-    .sticker-d {
-      width: 64px;
-      bottom: 10px;
-      left: 14px;
-      transform: rotate(7deg);
-    }
-
-    .sticker-e {
-      width: 58px;
-      top: 50px;
-      right: 14px;
-      transform: rotate(-6deg);
-      opacity: 0.88;
-    }
-
-    @media (max-width: 900px) {
-      .layout,
-      .two-col,
-      .small-grid,
-      .widget-row {
-        grid-template-columns: 1fr;
-      }
-
-      .header h1 {
-        font-size: 30px;
-      }
-
-      .floater-1 { width: 120px; }
-      .floater-2 { width: 150px; }
-      .floater-3 { width: 110px; }
-      .floater-4 { width: 130px; }
-
-      .sticker-a,
-      .sticker-b,
-      .sticker-c,
-      .sticker-d,
-      .sticker-e {
-        width: 48px;
-      }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>aceofclubs</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(to bottom, #ffffff, #f8f8f8);
+  color: #111;
+  overflow-x: hidden;
+}
+
+/* TOP STRIP */
+.top-strip {
+  background: #000;
+  color: #fff;
+  font-size: 11px;
+  padding: 6px 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #c40000;
+}
+
+.marquee {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 16s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 34px;
+  letter-spacing: 3px;
+}
+
+.sub {
+  font-size: 12px;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* BUTTON */
+.button {
+  display: inline-block;
+  background: #c40000;
+  color: #fff;
+  padding: 10px 14px;
+  border: 2px solid #000;
+  font-size: 12px;
+  text-transform: uppercase;
+  box-shadow: 3px 3px 0 #000;
+  margin-top: 10px;
+}
+
+/* LAYOUT */
+.container {
+  max-width: 500px;
+  margin: auto;
+  padding: 12px;
+}
+
+.section {
+  background: #fff;
+  border: 2px solid #c40000;
+  margin-bottom: 14px;
+  padding: 12px;
+  box-shadow: 4px 4px 0 #000;
+}
+
+/* LINKS */
+.links a {
+  display: block;
+  margin-bottom: 6px;
+  color: #c40000;
+}
+
+/* AUDIO */
+audio {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* PROFILE */
+.profile-pic {
+  width: 100%;
+  border: 2px solid #c40000;
+  margin-bottom: 10px;
+}
+
+/* TRACK LIST */
+.item {
+  padding: 8px 0;
+  border-bottom: 1px dashed #c40000;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+/* WISDOM */
+.wisdom-box {
+  border: 2px dashed #c40000;
+  padding: 10px;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+/* GUESTBOOK */
+input, textarea {
+  width: 100%;
+  margin-bottom: 8px;
+  border: 2px solid #000;
+  padding: 8px;
+}
+
+button {
+  background: #c40000;
+  color: #fff;
+  border: 2px solid #000;
+  padding: 8px;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  font-size: 12px;
+  padding: 20px;
+}
+
+</style>
 </head>
+
 <body>
 
-  <div class="floaters" aria-hidden="true">
-    <div class="floater behind floater-1"><img src="images/floater1.png" alt=""></div>
-    <div class="floater front floater-2"><img src="images/floater2.png" alt=""></div>
-    <div class="floater behind floater-3"><img src="images/floater3.png" alt=""></div>
-    <div class="floater front floater-4"><img src="images/floater4.png" alt=""></div>
+<div class="top-strip">
+  <div class="marquee">
+    aceofclubs // control loop // out soon // best viewed too late at night //
+  </div>
+</div>
+
+<div class="header">
+  <h1>aceofclubs</h1>
+  <div class="sub">control loop — out soon</div>
+  <a class="button" href="#">pre-save / listen</a>
+</div>
+
+<div class="container">
+
+  <!-- LINKS -->
+  <div class="section links">
+    <strong>links</strong>
+    <a href="https://soundcloud.com/aceofclubs-188352153">soundcloud</a>
+    <a href="https://www.instagram.com/aceofclubssssss/">instagram</a>
+    <a href="https://aceofclubs.bandcamp.com">bandcamp</a>
   </div>
 
-  <div class="top-strip">
-    <div class="marquee">
-      aceofclubs // professionally amateur // tribal house // techno // hardgroove // sound engineer kinda // this page may change without warning //
+  <!-- TEASER -->
+  <div class="section">
+    <strong>control loop (teaser)</strong>
+    <audio controls>
+      <source src="teaser.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <!-- PROFILE -->
+  <div class="section">
+    <img src="images/profile.jpg" class="profile-pic">
+    <strong>aceofclubs</strong><br>
+    tribal house / techno / hardgroove
+  </div>
+
+  <!-- ABOUT -->
+  <div class="section">
+    somewhere between pressure and overthinking.
+  </div>
+
+  <!-- LATEST -->
+  <div class="section">
+    <strong>latest track</strong>
+    <p>control loop — out soon</p>
+  </div>
+
+  <!-- TOP 5 -->
+  <div class="section">
+    <strong>top 5</strong>
+    <div class="item">Leod — Untitled 09</div>
+    <div class="item">Stóisís — is it yourself</div>
+    <div class="item">DJ Funk — Run</div>
+    <div class="item">Floorplan — Never Grow Old</div>
+    <div class="item">random pressure track</div>
+  </div>
+
+  <!-- WISDOM -->
+  <div class="section">
+    <button onclick="wisdom()">press for wisdom</button>
+    <div class="wisdom-box" id="wisdomBox">
+      press it.
     </div>
   </div>
 
-  <div class="header">
-    <h1>aceofclubs</h1>
-    <div class="sub">last updated: ??? // status: unknown</div>
-    <div class="ticker-wrap">
-      <div class="ticker">
-        now loading: pressure // mix status: spiritually clipping // guestbook currently accepting compliments and lies // best viewed: too late at night // laptop still employed somehow //
-      </div>
-    </div>
+  <!-- GUESTBOOK -->
+  <div class="section">
+    <strong>guestbook</strong>
+    <input placeholder="name">
+    <textarea placeholder="leave something"></textarea>
+    <button>send</button>
   </div>
 
-  <div class="nav">
-    <a href="#about">about</a>
-    <a href="#latest">latest track</a>
-    <a href="#top5">top 5</a>
-    <a href="#updates">updates</a>
-    <a href="#extras">extras</a>
-    <a href="#links">links</a>
-    <a href="#guestbook">guestbook</a>
+  <!-- BLINKIES -->
+  <div class="section">
+    <strong>blinkies</strong>
+    <div>hardgroove friendly</div>
+    <div>best with speakers</div>
+    <div>contains pressure</div>
   </div>
 
-  <div class="container">
-    <div class="layout">
-
-      <div>
-        <div class="box">
-          <div class="sidebar-sticker sticker-a"><img src="images/floater1.png" alt=""></div>
-          <div class="box-title">profile</div>
-          <div class="box-content">
-            <div class="profile-frame">
-              <img src="images/profile.jpg" alt="aceofclubs profile image" class="profile-pic" />
-            </div>
-            <p class="mini">is it yourself?</p>
-            <strong>aceofclubs</strong><br>
-            professionally amateur tribal house techno hardgroove sound engineer kinda
-            <p class="mini"><span class="status-light"></span>online now</p>
-            <p class="mini">currently: cookin</p>
-            <p class="mini">mood: locked in</p>
-            <p class="mini">webpage not for the faint hearted</p>
-            <div class="under-construction">under construction but emotionally stable</div>
-          </div>
-        </div>
-
-        <div class="box" id="links">
-          <div class="sidebar-sticker sticker-b"><img src="images/floater2.png" alt=""></div>
-          <div class="box-title">links</div>
-          <div class="box-content">
-            <p><a href="https://soundcloud.com/aceofclubs-188352153" target="_blank">soundcloud</a></p>
-            <p><a href="https://www.instagram.com/aceofclubssssss/" target="_blank">instagram</a></p>
-            <p><a href="https://aceofclubs.bandcamp.com" target="_blank">bandcamp</a></p>
-          </div>
-        </div>
-
-        <div class="box">
-          <div class="sidebar-sticker sticker-c"><img src="images/floater3.png" alt=""></div>
-          <div class="box-title">blinkies</div>
-          <div class="box-content">
-            <div class="blinkies">
-              <div class="blinkie">hardgroove friendly</div>
-              <div class="blinkie">best with speakers</div>
-              <div class="blinkie">contains pressure</div>
-              <div class="blinkie">certified story liker</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="box">
-          <div class="sidebar-sticker sticker-d"><img src="images/floater4.png" alt=""></div>
-          <div class="box-title">visitor counter</div>
-          <div class="box-content">
-            <div class="visitor-counter">000347</div>
-            <p class="mini">you are visitor number 000347</p>
-          </div>
-        </div>
-
-        <div class="box">
-          <div class="sidebar-sticker sticker-e"><img src="images/floater1.png" alt=""></div>
-          <div class="box-title">random info</div>
-          <div class="box-content">
-            <p><strong>listening:</strong> cars 3 soundtrack</p>
-            <p><strong>gear:</strong> laptop asking for some PTO</p>
-            <p><strong>open tabs:</strong> soundCloud / compressor manual / one suspicious forum post from 2008</p>
-            <div class="badge-row">
-              <div class="badge">mixing since 3am</div>
-              <div class="badge">kick not negotiated</div>
-              <div class="badge">site fact: no one asked</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="box">
-          <div class="box-title">now playing / mood</div>
-          <div class="box-content">
-            <div class="widget-row">
-              <div class="mini-widget">
-                <strong>now playing</strong>
-                <span id="nowPlayingText">some loop that was meant to be temporary</span>
-              </div>
-              <div class="mini-widget">
-                <strong>current mood</strong>
-                <span id="moodText">suspiciously optimistic</span>
-              </div>
-            </div>
-            <div class="widget-row">
-              <div class="mini-widget">
-                <strong>mix status</strong>
-                spiritually clipping
-              </div>
-              <div class="mini-widget">
-                <strong>site warning</strong>
-                may contain unreasonable confidence
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="fake-ad">
-          <strong>warning</strong><br>
-          excessive groove<br>
-          proceed accordingly
-        </div>
-      </div>
-
-      <div>
-        <div class="box" id="about">
-          <div class="box-title">about</div>
-          <div class="box-content hero-note">
-            aceofclubs sits between tribal house, techno, hardgroove and spending too long overthinkinh sound.
-            this page is like an old artist profile that never got taken down, just adjusted enough to still feel usable.
-            <div class="quote">
-              the naked man fears no pickpocket.
-            </div>
-            <div class="stamp-row">
-              <div class="stamp">tribal house</div>
-              <div class="stamp">techno</div>
-              <div class="stamp">hardgroove</div>
-              <div class="stamp">sound engineer kinda</div>
-              <div class="stamp">professionally amateur</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="box" id="latest">
-          <div class="box-title">latest track</div>
-          <div class="box-content">
-            <iframe
-              width="100%"
-              height="166"
-              scrolling="no"
-              frameborder="no"
-              allow="autoplay"
-              src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2281873088&color=%23f50808&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
-            </iframe>
-            <div style="font-size: 10px; color: #cccccc; line-break: anywhere; word-break: normal; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif; font-weight: 100;">
-              <a href="https://soundcloud.com/aceofclubs-188352153" title="aceofclubs" target="_blank" style="color: #cccccc; text-decoration: none;">aceofclubs</a> ·
-              <a href="https://soundcloud.com/aceofclubs-188352153/ignition-1" title="Ignition" target="_blank" style="color: #cccccc; text-decoration: none;">Ignition</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="two-col">
-          <div class="box" id="top5">
-            <div class="box-title">top 5 tracks i enjoy</div>
-            <div class="box-content track-list">
-              <div class="item"><span class="track-num">01</span> Leod — Untitled 09</div>
-              <div class="item"><span class="track-num">02</span> Stóisís — is it yourself</div>
-              <div class="item"><span class="track-num">03</span> Sunnysoposted — I JUS BE SAD SHWTY (CLUB TOOL)</div>
-              <div class="item"><span class="track-num">04</span> DJ FUNK - Run</div>
-              <div class="item"><span class="track-num">05</span> Cheryl - Call My Name</div>
-            </div>
-          </div>
-
-          <div class="box">
-            <div class="box-title">press for wisdom</div>
-            <div class="box-content">
-              <button class="wisdom-button" id="wisdomButton" type="button">press for wisdom</button>
-              <div class="wisdom-box" id="wisdomBox">press the button and receive something between advice and slander.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="two-col" id="updates">
-          <div class="box">
-            <div class="box-title">updates / thoughts</div>
-            <div class="box-content blog-list">
-              <div class="item">&gt; 3am decisions are permanent decisions until 8am</div>
-              <div class="item">&gt; removed 24 plugins. track improved instantly.</div>
-              <div class="item">&gt; kick is too loud. not fixing.</div>
-              <div class="item">&gt; mabye compression is just the friends we made along the way</div>
-              <div class="item">&gt; saved as final_v27_real_final2</div>
-            </div>
-          </div>
-
-          <div class="box">
-            <div class="box-title">tools of the trade</div>
-            <div class="box-content">
-              <div class="friends-list">
-                <div class="item">fl studio (still standing somehow)</div>
-                <div class="item">one kick drum i refuse to replace</div>
-                <div class="item">compressor doing emotional labour</div>
-                <div class="item">headphones from unknown origin</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="small-grid" id="extras">
-          <div class="box">
-            <div class="box-title">friends / adjacent energy</div>
-            <div class="box-content friends-list">
-              <div class="item">that juck who made addicted to bass isnt bad at this music craic</div>
-              <div class="item">the limiter</div>
-              <div class="item">that one aussie that likes all my tracks</div>
-              <div class="item">whoever made old forums</div>
-            </div>
-          </div>
-
-          <div class="box">
-            <div class="box-title">site facts / awards</div>
-            <div class="box-content">
-              <p>best viewed: too late at night</p>
-              <p>theme: white / red / black / overthinking</p>
-              <p>page type: artist profile / digital noticeboard / mild threat</p>
-              <div class="badge-row">
-                <div class="badge">laptop survivor 2026</div>
-                <div class="badge">certified overthinker</div>
-                <div class="badge">kick drum union</div>
-                <div class="badge">underqualified legend</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="box" id="guestbook">
-          <div class="box-title">guestbook / shoutbox / accusations</div>
-          <div class="box-content">
-            <form class="guestbook-form" id="guestbookForm">
-              <input type="text" id="guestName" placeholder="name / alias / liar" />
-              <textarea id="guestMessage" placeholder="leave a compliment, lie, threat, or review of the kick drum"></textarea>
-              <button class="guestbook-button" type="submit">sign guestbook</button>
-            </form>
-            <div class="guestbook-note">not actually sent anywhere. purely for atmosphere and local nonsense.</div>
-
-            <div class="shout-list" id="shoutList" style="margin-top: 12px;">
-              <div class="item"><strong>Jeff Mill(ion)s:</strong> legend</div>
-              <div class="item"><strong>anonymous forum user:</strong> kick still too loud but spiritually correct</div>
-              <div class="item"><strong>that one aussie:</strong> proper pressure on this one</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="footer">
-      made with html & bad decisions // aceofclubs © 2026
-    </div>
+  <!-- WARNING -->
+  <div class="section">
+    <strong>warning</strong><br>
+    excessive groove detected
   </div>
 
-  <script>
-    const wisdomLines = [
-      "the limiter is not your enemy, but it knows what you did.",
-      "if the kick feels too loud, it might finally be right.",
-      "delete three plugins before making any major life decision.",
-      "most problems can be solved by muting the wrong channel.",
-      "the groove improves the second you stop showing off.",
-      "reference tracks are just humbling in audio form.",
-      "if it sounds expensive and slightly dangerous, keep going.",
-      "you do not need another riser. stand down.",
-      "save the project now. this is not a test.",
-      "sometimes the best arrangement is simply less of it."
-    ];
+</div>
 
-    const nowPlayingLines = [
-      "some loop that was meant to be temporary",
-      "the same 8 bars but with stronger opinions",
-      "a hi-hat pattern that thinks it runs the room",
-      "something half-finished and already overhyped",
-      "the kick soloed for no defensible reason"
-    ];
+<div class="footer">
+  made with html & bad decisions  
+  © bad decisions 2026
+</div>
 
-    const moodLines = [
-      "suspiciously optimistic",
-      "locked in but hydrating poorly",
-      "one export away from enlightenment",
-      "confident for no real reason",
-      "mildly haunted by old forum advice"
-    ];
-
-    const wisdomButton = document.getElementById("wisdomButton");
-    const wisdomBox = document.getElementById("wisdomBox");
-    const nowPlayingText = document.getElementById("nowPlayingText");
-    const moodText = document.getElementById("moodText");
-
-    wisdomButton.addEventListener("click", () => {
-      const line = wisdomLines[Math.floor(Math.random() * wisdomLines.length)];
-      wisdomBox.textContent = line;
-    });
-
-    setInterval(() => {
-      nowPlayingText.textContent = nowPlayingLines[Math.floor(Math.random() * nowPlayingLines.length)];
-      moodText.textContent = moodLines[Math.floor(Math.random() * moodLines.length)];
-    }, 4500);
-
-    const guestbookForm = document.getElementById("guestbookForm");
-    const guestName = document.getElementById("guestName");
-    const guestMessage = document.getElementById("guestMessage");
-    const shoutList = document.getElementById("shoutList");
-
-    guestbookForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const name = guestName.value.trim() || "anonymous troublemaker";
-      const message = guestMessage.value.trim() || "said nothing but definitely meant something.";
-      const item = document.createElement("div");
-      item.className = "item";
-      item.innerHTML = "<strong>" + name.replace(/</g, "&lt;").replace(/>/g, "&gt;") + ":</strong> " + message.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-      shoutList.prepend(item);
-      guestName.value = "";
-      guestMessage.value = "";
-    });
-  </script>
+<script>
+function wisdom() {
+  const lines = [
+    "the kick is correct.",
+    "you are overthinking it.",
+    "export and move on.",
+    "less plugins = more respect.",
+    "it already works."
+  ];
+  document.getElementById("wisdomBox").innerText =
+    lines[Math.floor(Math.random() * lines.length)];
+}
+</script>
 
 </body>
 </html>
