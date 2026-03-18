@@ -88,19 +88,42 @@
     }
 
     .nav {
-      background: #fff;
-      border-bottom: 2px solid #c40000;
-      text-align: center;
-      padding: 10px;
-      font-size: 13px;
-      position: relative;
-      z-index: 20;
-    }
+  background: #fff;
+  border-bottom: 2px solid #c40000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  padding: 12px;
+  position: relative;
+  z-index: 20;
+}
 
-    .nav a {
-      margin: 0 10px;
-      display: inline-block;
-    }
+.nav-icon {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  color: #000;
+  border: 2px solid #000;
+  background: #fff7f7;
+  box-shadow: 3px 3px 0 #000;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.12s ease;
+}
+
+.nav-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.nav-icon:hover {
+  transform: translate(-2px, -2px) rotate(-2deg);
+  box-shadow: 5px 5px 0 #000;
+  background: #ffeaea;
+  color: #c40000;
+  transform: translate(-2px, -2px) rotate(-2deg) scale(1.05);
+}
 
     .container {
       max-width: 1100px;
@@ -847,15 +870,29 @@
   </div>
 
   <div class="nav">
-    <a href="#links">links</a>
-    <a href="#teaser">teaser</a>
-    <a href="#profile">profile</a>
-    <a href="#about">about</a>
-    <a href="#latest">latest</a>
-    <a href="#top5">top 5</a>
-    <a href="#wisdom">wisdom</a>
-    <a href="#guestbook">guestbook</a>
-  </div>
+  <a href="https://www.instagram.com/aceofclubssssss/" target="_blank" class="nav-icon">
+    <!-- Instagram -->
+    <svg viewBox="0 0 24 24" fill="none">
+      <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+      <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+      <circle cx="17" cy="7" r="1.5" fill="currentColor"/>
+    </svg>
+  </a>
+
+  <a href="https://soundcloud.com/aceofclubs-188352153" target="_blank" class="nav-icon">
+    <!-- SoundCloud -->
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M4 18h13a4 4 0 0 0 0-8 5 5 0 0 0-9.7-1.5A3.5 3.5 0 0 0 4 12v6z"/>
+    </svg>
+  </a>
+
+  <a href="https://aceofclubs.bandcamp.com" target="_blank" class="nav-icon">
+    <!-- Bandcamp -->
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M3 17l5.5-10h12L15 17H3z"/>
+    </svg>
+  </a>
+</div>
 
   <div class="container">
     <div class="main-flow">
